@@ -160,7 +160,7 @@ print(sorted(edges_set))
 
 if len(edges_set) != no_edges:
  print("yes it has multiedge")
-else:
+  else:
  print("no multi-edges")
  '''
 
