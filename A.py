@@ -138,7 +138,6 @@ data = [1, 2, 3, 4, 5]
 res = reduce(perform, data)
 print(res)'''
 
-
 """def antique(result, num):
     if num % 2 == 0:
         return result + (2 * num)
@@ -149,7 +148,7 @@ print(res)'''
 num = [1, 2, 3]
 res = reduce(antique, num)
 print(res)"""
-#----------------------------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------------------------
 
 # Python3 program to show that the variables with a value
 # assigned in the class declaration, are class variables and
@@ -191,8 +190,6 @@ print('Color: ', Buzo.color)
 print("\nAccessing class variable using class name")
 print(Dog.animal)"""
 
-
-
 # Python3 program to show that we can create
 # instance variables inside methods
 
@@ -225,4 +222,82 @@ Rodger.setColor("brown")
 print(Rodger.getColor())"""
 
 
+# INHERITENCE
+class Person:
+    def __init__(self, fname, lname):
+        self.firstname = fname
+        self.lastname = lname
 
+    def printname(self):
+        print(self.firstname, self.lastname)
+
+
+class Student(Person):
+    def __init__(self, fname, lname, year):
+        super().__init__(fname, lname)
+        self.graduationyear = year
+
+    def welcome(self):
+        print("Welcome", self.firstname, self.lastname, "to the class of", self.graduationyear)
+
+
+x = Student("Mike", "Olsen", 2024)
+x.welcome()
+
+
+# iterator
+class MyNumbers:
+    def __iter__(self):
+        self.a = 1
+        return self
+
+    def __next__(self):
+        if self.a <= 20:
+            x = self.a
+            self.a += 1
+            return x
+        else:
+            raise StopIteration
+
+
+myclass = MyNumbers()
+myiter = iter(myclass)
+
+for x in myiter:
+    print(x)
+
+
+# polymorphism
+class Car:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
+
+    def move(self):
+        print("Drive!")
+
+
+class Boat:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
+
+    def move(self):
+        print("Sail!")
+
+
+class Plane:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
+
+    def move(self):
+        print("Fly!")
+
+
+car1 = Car("Ford", "Mustang")  # Create a Car class
+boat1 = Boat("Ibiza", "Touring 20")  # Create a Boat class
+plane1 = Plane("Boeing", "747")  # Create a Plane class
+
+for x in (car1, boat1, plane1):
+    x.move()
