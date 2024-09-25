@@ -93,7 +93,6 @@ sequence = padovan_sequence(num)
 print(f"Padovan Sequence up to {num}:")
 print(" ".join(map(str, sequence)))"""
 
-
 """program 8--------------------------------------------------------------------------------------------------------------
 def find_leaders(arr):
     leaders = []
@@ -215,7 +214,7 @@ if result != -1:
 else:
     print("the numbers doesnt not exist ")"""
 
-#-------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------
 # binary search
 n = int(input("enter the number of elements:"))
 l = []
@@ -247,14 +246,90 @@ if result != -1:
     print("number found")
 else:
     print("number not found")
-#---------------------------------------------------------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------------------------------------------------------
+# Uniform binary search
+def uniform_binary_search(arr, target):
+    n = len(arr)
+
+    # Precompute the jump sizes
+    steps = []
+    step = n // 2
+    while step > 0:
+        steps.append(step)
+        step //= 2
+
+    low = 0
+    high = n - 1
+
+    # Iterate over the precomputed steps
+    for step in steps:
+        mid = low + step
+
+        if mid > high:
+            continue
+
+        if arr[mid] == target:
+            return mid  # Target found
+        elif arr[mid] < target:
+            low = mid + 1  # Move to the right half
+        else:
+            high = mid - 1  # Move to the left half
+
+    return -1  # Target not found
 
 
+# Example usage:
+arr = list(map(int, input().split(",")))
+target = int(input())
+
+index = uniform_binary_search(arr, target)
+
+if index != -1:
+    print(f"Element {target} found at index {index}.")
+else:
+    print(f"Element {target} not found.")
 
 
+# -------------------------------------------------------------------------------------------------------------------------------------------------
+# Interpolation search
+def interpolation_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+
+    while low <= high and target >= arr[low] and target <= arr[high]:
+        # Avoid division by zero when arr[low] == arr[high]
+        if arr[low] == arr[high]:
+            if arr[low] == target:
+                return low
+            else:
+                return -1
+
+        # Estimate the position using the interpolation formula
+        pos = low + ((high - low) * (target - arr[low])) // (arr[high] - arr[low])
+
+        print(f"Checking position {pos} with value {arr[pos]}")
+
+        # Target found
+        if arr[pos] == target:
+            return pos
+        # Target is in the right half
+        elif arr[pos] < target:
+            low = pos + 1
+        # Target is in the left half
+        else:
+            high = pos - 1
+
+    return -1  # Target not found
 
 
+# Example usage:
+arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+target = 70
 
+index = interpolation_search(arr, target)
 
+if index != -1:
+    print(f"Element {target} found at index {index}.")
+#--------------------------------------------------------------------------------------------------------------------------------------
