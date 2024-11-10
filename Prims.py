@@ -75,6 +75,7 @@ def merge(A, B):
             c.append(B[j])
             j = j + 1
 
+
     return c
 
 def merge_sort(A, left, right):

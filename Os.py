@@ -427,7 +427,7 @@ class SequentialFileAllocation:
 block_size = 1
 file_system = SequentialFileAllocation(block_size)
 
-student_records = [
+student_records =   [
     StudentRecord("John Doe", 101, 10, "123 Main Street"),
     StudentRecord("Jane Smith", 102, 11, "456 Elm Street"),
     StudentRecord("Michael Brown", 103, 9, "789 Oak Avenue")
