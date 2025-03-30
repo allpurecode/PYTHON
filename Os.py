@@ -18,7 +18,7 @@ def simulate_fcfs(jobs):
         start_time = current_time
         end_time = current_time + job.pages
         completion_time.append((job.name, start_time, end_time))
-        current_time = end_time
+         current_time = end_time
     return completion_time
 
 
@@ -44,18 +44,19 @@ if __name__ == "__main__":
         self.name = name
         self.execution_time = execution_time
 
-
+ 
 def simulate_sjf(tasks):
-    tasks.sort(key=lambda: tasks.execution_time)
+    # Sort tasks by their execution time (Shortest Job First)
+    tasks.sort(key=lambda task: task.execution_time)
 
     current_time = 0
     completion_times = []
     for task in tasks:
         start_time = current_time
-        end_time = start_time + tasks.execution_time
-        completion_times.append((tasks.name, start_time, end_time))
+        end_time = start_time + task.execution_time
+        completion_times.append((task.name, start_time, end_time))
 
-        # updation
+        # Update current time to the end time of the current task
         current_time = end_time
     return completion_times
 
@@ -66,43 +67,41 @@ def main():
         Task("A", 3),
         Task("B", 5),
         Task("C", 7),
-        Task("D", 4)]
+        Task("D", 4)
+    ]
 
     completion_times = simulate_sjf(tasks)
 
-    print("task completion time :")
+    print("Task Completion Time:")
     for task_name, start_time, end_time in completion_times:
-        print(f"Task{task_name} : Start Time = {start_time} , End Time = {end_time}")
-    total_time = completion_times[-1][2]
-    print(f"total time to complete all task {total_time} hours ")
+        print(f"Task {task_name}: Start Time = {start_time}h, End Time = {end_time}h")
 
-if __name__=="__main__":
+    total_time = completion_times[-1][2]
+    print(f"Total time to complete all tasks: {total_time} hours")
+
+
+if __name__ == "__main__":
     main()
 """
+
 # -----------------------------------------------------------------------------------------------------------------------------------------
 # program 3
-from collections import deque
+"""from collections import deque
 
 
 def round_robin_scheduling(order_times, time_quantum):
-    # Initialize the queue with (order_index, remaining_time)
+    
     queue = deque((i, time) for i, time in enumerate(order_times))
 
     current_time = 0
     while queue:
-        # Get the next order in the queue
+        
         order_index, remaining_time = queue.popleft()
-
-        # Process the order for the minimum of time quantum or remaining time
         processing_time = min(time_quantum, remaining_time)
-
-        # Update the remaining time
         remaining_time -= processing_time
-
-        # Increase the total time elapsed
         current_time += processing_time
 
-        # If the order is not yet complete, put it back in the queue
+       
         if remaining_time > 0:
             queue.append((order_index, remaining_time))
 
@@ -111,11 +110,11 @@ def round_robin_scheduling(order_times, time_quantum):
 
 # Input: Processing times for each order
 order_times = [5, 3, 8, 6]
-time_quantum = 4
+time_quantum = 5
 
 # Calculate total time required using Round Robin scheduling
 total_time = round_robin_scheduling(order_times, time_quantum)
-print(f"Total time required to complete all orders: {total_time} minutes")
+print(f"Total time required to complete all orders: {total_time} minutes")"""
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------
 # program 4
@@ -130,12 +129,11 @@ patients = [
 
 
 def priority_scheduling(patients):
-    # Create a priority queue using heapq. The heap is ordered by priority.
-    # Higher priority level should come first, so we use -priority_level to invert the order.
+
     priority_queue = []
     for patient in patients:
         name, priority, treatment_time = patient
-        heapq.heappush(priority_queue, (-priority, name, treatment_time))
+        heapq.heappush(priority_queue, (priority, name, treatment_time))
 
     current_time = 0
     order_of_treatment = []
@@ -161,7 +159,7 @@ print(f"\nTotal time required to treat all patients: {total_time} minutes")
 # -----------------------------------------------------------------------------------------------------------------------------------------
 # week 2
 # program 1
-system_processes = [
+"""system_processes = [
     ("Process A", 5),
     ("Process B", 3),
     ("Process C", 7)
@@ -444,4 +442,7 @@ if retrieved_record:
     print(f"\nRetrieved Record for ID {student_id}:")
     print(retrieved_record)
 else:
-    print(f"\nRecord with ID {student_id} not found.")
+    print(f"\nRecord with ID {student_id} not found.")"""
+
+
+# ----------------------------------------------------------------------------------------------------------------------------
